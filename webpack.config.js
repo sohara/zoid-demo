@@ -6,7 +6,8 @@ module.exports = {
   mode: 'development',
   entry: {
     app: './src/index.ts',
-    print: './src/print.ts',
+    button: './src/button.ts',
+    checkout: './src/checkout.ts',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -28,7 +29,19 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      filename: 'index.html',
+      template: 'src/index.html',
+      chunks: ['app'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'button.html',
+      template: 'src/button.html',
+      chunks: ['button'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'checkout.html',
+      template: 'src/checkout.html',
+      chunks: ['checkout'],
     }),
   ],
   resolve: {

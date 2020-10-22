@@ -5,9 +5,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/index.ts',
-    button: './src/button.ts',
-    checkout: './src/checkout.ts',
+    app: './src/host/index.ts',
+    button: './src/button/index.ts',
+    checkout: './src/checkout/index.tsx',
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -30,17 +30,17 @@ module.exports = {
     new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html',
+      template: 'src/host/index.html',
       chunks: ['app'],
     }),
     new HtmlWebpackPlugin({
-      filename: 'button.html',
-      template: 'src/button.html',
+      filename: 'button',
+      template: 'src/button/index.html',
       chunks: ['button'],
     }),
     new HtmlWebpackPlugin({
-      filename: 'checkout.html',
-      template: 'src/checkout.html',
+      filename: 'checkout',
+      template: 'src/checkout/index.html',
       chunks: ['checkout'],
     }),
   ],

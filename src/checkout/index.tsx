@@ -2,7 +2,14 @@ import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { CheckoutComponent } from '../shared/zoid-checkout';
 
-CheckoutComponent();
+CheckoutComponent;
+console.log({ CheckoutComponent });
+
+const checkoutInstance = CheckoutComponent();
+console.log({ checkoutInstance });
+checkoutInstance.event.on('hello', () => {
+  console.log('got hello');
+});
 
 const App: FunctionComponent = (props) => {
   console.log({ props });

@@ -1,5 +1,6 @@
 import { ButtonComponent } from '../shared/zoid-button';
 import { CheckoutComponent } from '../shared/zoid-checkout';
+CheckoutComponent;
 
 import './style.css';
 import { printMe } from './print';
@@ -37,9 +38,9 @@ const buttonInstance = ButtonComponent({
 
 buttonInstance.render('#zoid-button-container');
 
-CheckoutComponent({
-  foo: 'bar',
-  onInteraction: (val: string) => {
-    console.log(`Interaction from child checkout component: ${val}`);
-  },
-}).render('#zoid-checkout-container');
+// CheckoutComponent({
+//   foo: 'bar',
+//   onInteraction: (val: string) => {
+//     console.log(`Interaction from child checkout component: ${val}`);
+//   },
+// }).render('#zoid-checkout-container');

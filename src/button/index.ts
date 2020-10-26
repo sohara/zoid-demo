@@ -1,5 +1,6 @@
 import { ButtonComponent as ZoidButtonComponent } from '../shared/zoid-button';
 import { CheckoutComponent } from '../shared/zoid-checkout';
+import './style.css';
 ZoidButtonComponent;
 
 function buttonComponent() {
@@ -8,9 +9,8 @@ function buttonComponent() {
   const p = document.createElement('p');
   const btn = document.createElement('button');
 
-  h1.innerHTML = 'Button Iframe';
   // @ts-ignore
-  p.innerHTML = `Value of foo from parent: ${window.xprops.foo}`;
+  // p.innerHTML = `Value of foo from parent: ${window.xprops.foo}`;
 
   const checkoutInstance = CheckoutComponent({
     foo: 'bar',
@@ -18,9 +18,12 @@ function buttonComponent() {
       console.log(`Interaction from child checkout component: ${val}`);
     },
   });
+
   checkoutInstance.renderTo(window.parent, 'body');
 
-  btn.innerHTML = 'Click me';
+  btn.innerHTML = 'Apply for financing';
+  btn.className =
+    'bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded';
   btn.onclick = () => {
     console.log('Button clicked in child');
     // @ts-ignore

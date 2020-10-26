@@ -3,19 +3,12 @@ import { CheckoutComponent } from '../shared/zoid-checkout';
 CheckoutComponent;
 
 import './style.css';
-import { printMe } from './print';
 
 function component() {
   const element = document.createElement('div');
   const btn = document.createElement('button');
   const zoidButtonContainer = document.createElement('div');
   const zoidCheckoutContainer = document.createElement('div');
-
-  element.innerHTML = 'Hello Webpack';
-  element.classList.add('hello');
-
-  btn.innerHTML = 'Click me';
-  btn.onclick = printMe;
 
   zoidButtonContainer.id = 'zoid-button-container';
   zoidCheckoutContainer.id = 'zoid-checkout-container';
@@ -27,7 +20,9 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+const buttonContainer =
+  document.querySelector('div#bread-button-container') || document.body;
+buttonContainer.appendChild(component());
 
 const buttonInstance = ButtonComponent({
   foo: 'bar',

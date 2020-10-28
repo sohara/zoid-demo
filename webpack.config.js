@@ -32,6 +32,7 @@ module.exports = {
       filename: 'index.html',
       template: 'src/host/index.html',
       chunks: ['app'],
+      inject: 'head',
     }),
     new HtmlWebpackPlugin({
       filename: 'button',

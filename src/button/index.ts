@@ -3,6 +3,19 @@ import { CheckoutComponent } from '../shared/zoid-checkout';
 import './style.css';
 ZoidButtonComponent;
 
+type Xprops = {
+  showContainer: (id: string) => void;
+  hideContainer: (id: string) => void;
+  onApproved: (transactionID: string) => void;
+  options: Record<string, any>;
+};
+interface Window {
+  xprops: Xprops;
+  parent: HTMLDocument;
+}
+
+declare var window: Window;
+
 function buttonComponent() {
   const element = document.createElement('div');
   const h1 = document.createElement('h1');
@@ -12,23 +25,37 @@ function buttonComponent() {
   // @ts-ignore
   // p.innerHTML = `Value of foo from parent: ${window.xprops.foo}`;
 
-  const checkoutInstance = CheckoutComponent({
-    foo: 'bar',
-    onInteraction: (val: string) => {
-      console.log(`Interaction from child checkout component: ${val}`);
-    },
-  });
+  let checkoutContainerId: string;
 
-  checkoutInstance.renderTo(window.parent, 'body');
+  const checkoutInstance = CheckoutComponent({
+    showContainer(id: string) {
+      console.log('CheckoutComponent showContainer called', id);
+      checkoutContainerId = id;
+      window.xprops.showContainer(id);
+    },
+    hideContainer(id: string) {
+      console.log('CheckoutComponent showContainer called', id);
+      window.xprops.hideContainer(id);
+    },
+    options: window.xprops.options,
+    onApproved: window.xprops.onApproved,
+  });
+  let checkoutInstanceRendered = false;
 
   btn.innerHTML = 'Apply for financing';
   btn.className =
     'bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded';
   btn.onclick = () => {
     console.log('Button clicked in child');
-    // @ts-ignore
-    window.xprops.onInteraction('blah');
-    checkoutInstance.event.trigger('hello', 'stuff');
+    if (!checkoutInstanceRendered) {
+      checkoutInstance.renderTo(window.parent, 'body').then(() => {
+        console.log('rendered');
+      });
+      checkoutInstanceRendered = true;
+    } else {
+      window.xprops.showContainer(checkoutContainerId);
+    }
+    console.log({ checkoutInstance });
   };
 
   element.appendChild(h1);

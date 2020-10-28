@@ -27,5 +27,15 @@
         </div>
       </div>
     </div>
+    <script>
+      function onApproved(transactionID) {
+        alert(`Got approval in host: ${transactionID}`);
+      }
+      window.breadFinance.checkout({
+        item: 'Best Widget Yet',
+        price: 799,
+        onApproved,
+      });
+    </script>
   </body>
 </html>

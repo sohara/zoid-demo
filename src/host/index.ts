@@ -1,8 +1,8 @@
 import { ButtonComponent } from '../shared/zoid-button';
 import { CheckoutComponent } from '../shared/zoid-checkout';
-CheckoutComponent;
-
 import './style.css';
+
+CheckoutComponent;
 
 type CheckoutOptions = {
   item: string;
@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
   buttonContainer.appendChild(component());
 
   const buttonInstance = ButtonComponent({
-    foo: 'bar',
     showContainer,
     hideContainer,
     options: window.breadFinance.options,

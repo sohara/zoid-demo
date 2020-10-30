@@ -1,6 +1,7 @@
 import { ButtonComponent as ZoidButtonComponent } from '../shared/zoid-button';
 import { CheckoutComponent } from '../shared/zoid-checkout';
 import './style.css';
+
 ZoidButtonComponent;
 
 type Xprops = {
@@ -14,16 +15,13 @@ interface Window {
   parent: HTMLDocument;
 }
 
-declare var window: Window;
+declare const window: Window;
 
 function buttonComponent() {
   const element = document.createElement('div');
   const h1 = document.createElement('h1');
   const p = document.createElement('p');
   const btn = document.createElement('button');
-
-  // @ts-ignore
-  // p.innerHTML = `Value of foo from parent: ${window.xprops.foo}`;
 
   let checkoutContainerId: string;
 
@@ -40,6 +38,7 @@ function buttonComponent() {
     options: window.xprops.options,
     onApproved: window.xprops.onApproved,
   });
+
   let checkoutInstanceRendered = false;
 
   btn.innerHTML = 'Apply for financing';

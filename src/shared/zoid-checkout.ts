@@ -37,6 +37,7 @@ export const CheckoutComponent = zoid.create({
       type: 'function',
     },
   },
+
   containerTemplate: function ({
     uid,
     frame,
